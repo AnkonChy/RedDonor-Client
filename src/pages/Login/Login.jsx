@@ -1,12 +1,17 @@
-import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 import React, { useState } from "react";
 import { Link } from "react-router";
 import auth from "../../firebase/firebase.config";
 
 const Login = () => {
   const [user, setUser] = useState(null);
-  //   const [email, setEmail] = useState("");
-  //   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   //   const handleSubmit = (e) => {
   //     e.preventDefault();
@@ -22,7 +27,7 @@ const Login = () => {
     //   .catch((error) => {
     //     console.log(error.message);
     //   });
-    setUser(null)
+    setUser(null);
   };
 
   const provider = new GoogleAuthProvider();
@@ -38,28 +43,38 @@ const Login = () => {
       });
   };
 
-  const handleLogin = () =>{
-
-  }
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log(email, password);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        console.log(result);
+        setUser(result.user);
+      })
+      .catch((error) => {
+        setUser(null);
+      });
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-pink-50">
-      <button
+      {/* <button
         onClick={handleSignOut}
         className="btn border-pink-600 bg-red-600 mt-4 text-white"
       >
         Sign Out
-      </button>
-      {user && (
+      </button> */}
+      {/* {user && (
         <div>
           <h2>{user.displayName}</h2>
           <p>{user.email}</p>
           <img src={user.photoURL} alt="" />
         </div>
-      )}
+      )} */}
       <div className="bg-base-100 w-full max-w-sm shadow-2xl">
+        <h1 className="text-4xl font-semibold text-center pt-10">Login Page</h1>
         <div className="card-body">
-          <form onSubmit={handleLogin}  className="fieldset">
-            <label className="">Email</label>
+          <form onSubmit={handleLogin} className="fieldset">
+            <label className="text-base">Email</label>
             <input
               name="email"
               onChange={(e) => setEmail(e.target.value)}
@@ -67,7 +82,7 @@ const Login = () => {
               className="input"
               placeholder="Email"
             />
-            <label className="">Password</label>
+            <label className="text-base">Password</label>
             <input
               onChange={(e) => setPassword(e.target.value)}
               name="password"
@@ -78,7 +93,10 @@ const Login = () => {
             <div>
               <a className="link link-hover">Forgot password?</a>
             </div>
-            <button type="submit" className="btn border-pink-600 bg-red-600 mt-4 text-white">
+            <button
+              type="submit"
+              className="btn border-pink-600 bg-red-600 mt-4 text-white"
+            >
               Login
             </button>
           </form>
