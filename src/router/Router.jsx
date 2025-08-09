@@ -16,6 +16,7 @@ const router = createBrowserRouter([
       { index: true, Component: Home },
       { path: "about", Component: About },
       { path: "login", Component: Login },
+      { path: "register", Component: Login },
     ],
   },
 ]);
