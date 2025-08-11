@@ -1,6 +1,6 @@
 import {
-  createUserWithEmailAndPassword,
   GoogleAuthProvider,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
@@ -46,7 +46,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     console.log(email, password);
-    createUserWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then((result) => {
         console.log(result);
         setUser(result.user);
@@ -115,7 +115,7 @@ const Login = () => {
           </button>
           <div className="flex items-center">
             <p>Don't have an account?</p>
-            <Link className="text-red-700">Sign up for free</Link>
+            <Link to="/signup" className="text-red-700">Sign up for free</Link>
           </div>
         </div>
       </div>

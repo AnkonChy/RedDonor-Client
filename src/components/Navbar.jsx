@@ -35,10 +35,10 @@ const Navbar = () => {
             <NavLink>About Us</NavLink>
           </li>
           <li>
-            <NavLink to={"/register"}>Register</NavLink>
+            <NavLink to="/signup">Sign Up</NavLink>
           </li>
           <li>
-            <NavLink to={"/login"}>Login</NavLink>
+            <NavLink to={"/signin"}>Sign In</NavLink>
           </li>
         </ul>
 
@@ -68,10 +68,10 @@ const Navbar = () => {
               <NavLink>About Us</NavLink>
             </li>
             <li>
-              <NavLink>Register</NavLink>
+              <NavLink to="/signup">Sign Up</NavLink>
             </li>
             <li>
-              <NavLink to={"/login"}>Login</NavLink>
+              <NavLink to={"/signin"}>Sign In</NavLink>
             </li>
           </ul>
         </div>

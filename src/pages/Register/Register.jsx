@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { Link, useLoaderData } from "react-router";
+import { Link, NavLink, useLoaderData } from "react-router";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import auth from "../../firebase/firebase.config";
+import { FaEye } from "react-icons/fa";
+import { LuEyeClosed } from "react-icons/lu";
 
 const Register = () => {
   const { districtsData, upazilaData } = useLoaderData();
@@ -12,20 +16,36 @@ const Register = () => {
   const [district, setDistrict] = useState("");
   const [upazila, setUpazila] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const registerData = {
     email,
     name,
     avatar,
     bloodGroup,
+    district,
+    upazila,
+    password,
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-pink-50">
-      <div className="bg-base-100 w-full max-w-2xl shadow-2xl">
+    <div className="min-h-screen bg-pink-50 pt-10">
+      <div className="bg-base-100 w-full max-w-xl shadow-2xl mx-auto">
         <h1 className="text-4xl font-semibold text-center pt-10">
           Register Your Account
         </h1>
         <div className="card-body">
-          <form className="space-y-2">
+          <form onSubmit={handleSubmit} className="space-y-2">
             <div className="flex items-center gap-4">
               <div className="flex flex-col w-1/2">
                 <label className="text-base">Email</label>
@@ -59,10 +79,14 @@ const Register = () => {
               <div className="flex flex-col w-1/2">
                 <label className="text-base">Blood Group</label>
                 <select
+                  className="input"
                   onChange={(e) => setUpazila(e.target.value)}
                   name="bloodGroup"
                   id=""
                 >
+                  <option value="" disabled selected>
+                    Select blood group
+                  </option>
                   <option value="A+">A+</option>
                   <option value="A">A-</option>
                   <option value="B+">B+</option>
@@ -78,42 +102,66 @@ const Register = () => {
               <div className="flex flex-col w-1/2">
                 <label className="text-base">District</label>
                 <select
+                  className="input"
                   onChange={(e) => setBloodGroup(e.target.value)}
                   name="bloodGroup"
                   id=""
                 >
                   {districtsData.map((district) => (
-                    <option value={district?.name}>{district?.name}</option>
+                    <option key={upazila?.id} value={district?.name}>
+                      {district?.name}
+                    </option>
                   ))}
                 </select>
               </div>
               <div className="flex flex-col w-1/2">
                 <label className="text-base">Upazila</label>
-                <select onChange={(e) => setDistrict(e.target.value)} id="">
+                <select
+                  className="input"
+                  onChange={(e) => setDistrict(e.target.value)}
+                  id=""
+                >
+                  <option value="" disabled selected>
+                    Select Upazila
+                  </option>
                   {upazilaData.map((upazila) => (
-                    <option value={upazila?.name}>{upazila?.name}</option>
+                    <option key={upazila?.id} value={upazila?.name}>
+                      {upazila?.name}
+                    </option>
                   ))}
                 </select>
               </div>
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex flex-col relative">
               <label className="text-base">Password</label>
               <input
                 onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                className="input"
+                type={showPassword ? "text" : "password"}
+                className="input w-full"
                 placeholder="Password"
               />
+              <button
+                onClick={() => setShowPassword(!showPassword)}
+                className="btn btn-xs absolute right-4 top-8 text-lg"
+              >
+                {showPassword ? <LuEyeClosed /> : <FaEye />}
+              </button>
             </div>
-            <div>
-              <a className="link link-hover">Forgot password?</a>
+            <div className="flex flex-col">
+              <label className="text-base">Confirm Password</label>
+              <input
+                onChange={(e) => setPassword(e.target.value)}
+                type={showPassword ? "text" : "password"}
+                className="input w-full"
+                placeholder="Password"
+              />
             </div>
             <button
               type="submit"
               className="btn border-pink-600 bg-red-600 mt-4 text-white"
             >
-              Login
+              Sign Up
             </button>
           </form>
           <div className="flex items-center my-6">
@@ -130,8 +178,8 @@ const Register = () => {
             <span>Continue with Google</span>
           </button>
           <div className="flex items-center">
-            <p>Don't have an account?</p>
-            <Link className="text-red-700">Sign up for free</Link>
+            <p>Already have an account?</p>
+            <NavLink to="/signin" className="text-red-700">Sign In</NavLink>
           </div>
         </div>
       </div>
