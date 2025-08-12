@@ -7,11 +7,14 @@ import {
 import React, { useState } from "react";
 import { Link } from "react-router";
 import auth from "../../firebase/firebase.config";
+import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [user, setUser] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   //   const handleSubmit = (e) => {
   //     e.preventDefault();
@@ -57,6 +60,9 @@ const Login = () => {
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-pink-50">
+      <Helmet>
+        <title>RedDonor | Login</title>
+      </Helmet>
       {/* <button
         onClick={handleSignOut}
         className="btn border-pink-600 bg-red-600 mt-4 text-white"
@@ -82,14 +88,21 @@ const Login = () => {
               className="input"
               placeholder="Email"
             />
-            <label className="text-base">Password</label>
-            <input
-              onChange={(e) => setPassword(e.target.value)}
-              name="password"
-              type="password"
-              className="input"
-              placeholder="Password"
-            />
+            <div className="relative">
+              <label className="text-base">Password</label>
+              <input
+                onChange={(e) => setPassword(e.target.value)}
+                type={showPassword ? "text" : "password"}
+                className="input"
+                placeholder="Password"
+              />
+              <button
+                onClick={() => setShowPassword(!showPassword)}
+                className="btn btn-xs absolute right-6 top-8 text-base"
+              >
+                {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
+              </button>
+            </div>
             <div>
               <a className="link link-hover">Forgot password?</a>
             </div>
@@ -115,7 +128,9 @@ const Login = () => {
           </button>
           <div className="flex items-center">
             <p>Don't have an account?</p>
-            <Link to="/signup" className="text-red-700">Sign up for free</Link>
+            <Link to="/signup" className="text-red-700">
+              Sign up for free
+            </Link>
           </div>
         </div>
       </div>

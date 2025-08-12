@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { Link, NavLink, useLoaderData } from "react-router";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import auth from "../../firebase/firebase.config";
 import { FaEye } from "react-icons/fa";
 import { LuEyeClosed } from "react-icons/lu";
+import { PiEyesFill } from "react-icons/pi";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const { districtsData, upazilaData } = useLoaderData();
@@ -32,6 +37,11 @@ const Register = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         console.log(result);
+
+        //sent varification email address
+        sendEmailVerification(auth.currentUser).then(() => {
+          console.log("verification email sent");
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -40,6 +50,9 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-pink-50 pt-10">
+      <Helmet>
+        <title>RedDonor | Sign Up</title>
+      </Helmet>
       <div className="bg-base-100 w-full max-w-xl shadow-2xl mx-auto">
         <h1 className="text-4xl font-semibold text-center pt-10">
           Register Your Account
@@ -143,9 +156,9 @@ const Register = () => {
               />
               <button
                 onClick={() => setShowPassword(!showPassword)}
-                className="btn btn-xs absolute right-4 top-8 text-lg"
+                className=" btn-xs absolute right-5 top-8 text-xl"
               >
-                {showPassword ? <LuEyeClosed /> : <FaEye />}
+                {showPassword ? <LuEyeClosed /> : <PiEyesFill />}
               </button>
             </div>
             <div className="flex flex-col">
@@ -179,7 +192,9 @@ const Register = () => {
           </button>
           <div className="flex items-center">
             <p>Already have an account?</p>
-            <NavLink to="/signin" className="text-red-700">Sign In</NavLink>
+            <NavLink to="/signin" className="text-red-700">
+              Sign In
+            </NavLink>
           </div>
         </div>
       </div>
