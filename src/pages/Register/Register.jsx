@@ -40,7 +40,7 @@ const Register = () => {
 
         //sent varification email address
         sendEmailVerification(auth.currentUser).then(() => {
-          console.log("verification email sent");
+         console.log('gesess');
         });
       })
       .catch((error) => {
@@ -203,3 +203,17 @@ const Register = () => {
 };
 
 export default Register;
+
+function outer() {
+  let count = 0;
+  return function inner() {
+    count++;
+    return count;
+  };
+}
+
+function sayHi(callback) {
+  callback();
+}
+
+sayHi(() => console.log("Hi"));

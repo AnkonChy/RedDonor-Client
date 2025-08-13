@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import React, { useState } from "react";
 import { Link } from "react-router";
@@ -15,6 +16,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loginError, setLoginError] = useState("");
 
   //   const handleSubmit = (e) => {
   //     e.preventDefault();
@@ -38,7 +40,14 @@ const Login = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         console.log(result);
-        setUser(result.user);
+
+        if (!result.user.emailVerified) {
+          // setError("Please verify you email address");
+          console.log("not varified");
+          return;
+        } else {
+          setUser(result.user);
+        }
       })
       .catch((error) => {
         console.log("Error", error);
@@ -57,6 +66,23 @@ const Login = () => {
       .catch((error) => {
         setUser(null);
       });
+  };
+
+  const handleForgetPassword = () => {
+    console.log(email);
+    if (!email) {
+      console.log("vai email de");
+    } else {
+      sendPasswordResetEmail(auth, email)
+        .then(() => {
+          alert("Reset email sent, please check your email");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+        });
+    }
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-pink-50">
@@ -103,7 +129,7 @@ const Login = () => {
                 {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
               </button>
             </div>
-            <div>
+            <div onClick={handleForgetPassword}>
               <a className="link link-hover">Forgot password?</a>
             </div>
             <button
@@ -113,6 +139,8 @@ const Login = () => {
               Login
             </button>
           </form>
+
+          {loginError && <p>{loginError}</p>}
           <div className="flex items-center my-6">
             <hr className="flex-1 border-gray-300" />
             <span className="px-3 text-gray-500 text-sm font-medium">OR</span>
