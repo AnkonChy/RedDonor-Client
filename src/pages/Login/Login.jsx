@@ -22,6 +22,7 @@ const Login = () => {
   //     e.preventDefault();
   //     console.log(email, password);
   //   };
+  console.log(user);
 
   const handleSignOut = () => {
     // signOut(auth)
@@ -103,6 +104,7 @@ const Login = () => {
         </div>
       )} */}
       <div className="bg-base-100 w-full max-w-sm shadow-2xl">
+        {/* <h1>{user}</h1> */}
         <h1 className="text-4xl font-semibold text-center pt-10">Login Page</h1>
         <div className="card-body">
           <form onSubmit={handleLogin} className="fieldset">

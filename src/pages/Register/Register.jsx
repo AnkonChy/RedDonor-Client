@@ -3,6 +3,7 @@ import { Link, NavLink, useLoaderData } from "react-router";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
+  updateProfile,
 } from "firebase/auth";
 import auth from "../../firebase/firebase.config";
 import { FaEye } from "react-icons/fa";
@@ -12,7 +13,6 @@ import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const { districtsData, upazilaData } = useLoaderData();
-  //   console.log(districtsData)
 
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -22,26 +22,40 @@ const Register = () => {
   const [upazila, setUpazila] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const registerData = {
-    email,
-    name,
-    avatar,
-    bloodGroup,
-    district,
-    upazila,
-    password,
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const registerData = {
+      email,
+      name,
+      avatar,
+      bloodGroup,
+      district,
+      upazila,
+      password,
+    };
+    console.log(registerData);
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         console.log(result);
 
         //sent varification email address
         sendEmailVerification(auth.currentUser).then(() => {
-         console.log('gesess');
+          console.log("Email varificaiton sent successfully");
         });
+
+        //update profile information
+        const profile = {
+          displayName: name,
+          photoURL:
+            "https://i.ibb.co.com/43rxh2C/pexels-julia-m-cameron-6994944.jpg",
+        };
+
+        updateProfile(auth.currentUser, profile)
+          .then(() => {
+            console.log("user profile updated");
+          })
+          .catch((error) => console.log("User profile update error"));
       })
       .catch((error) => {
         console.log(error);
@@ -203,17 +217,3 @@ const Register = () => {
 };
 
 export default Register;
-
-function outer() {
-  let count = 0;
-  return function inner() {
-    count++;
-    return count;
-  };
-}
-
-function sayHi(callback) {
-  callback();
-}
-
-sayHi(() => console.log("Hi"));
