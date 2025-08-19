@@ -1,4 +1,4 @@
-import Banner from "../components/banner";
+
 
 const About = () => {
   return (

@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl">RedDonor</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         {/* <ul className="menu menu-horizontal px-1">
@@ -32,7 +32,16 @@ const Navbar = () => {
       <div className="navbar-end">
         <ul className="menu menu-horizontal px-1  hidden lg:flex">
           <li>
+            <NavLink>Donation Request</NavLink>
+          </li>
+          <li>
+            <NavLink>Blog</NavLink>
+          </li>
+          <li>
             <NavLink>About Us</NavLink>
+          </li>
+          <li>
+            <NavLink>Funding</NavLink>
           </li>
           <li>
             <NavLink to="/signup">Sign Up</NavLink>
@@ -65,6 +74,12 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow right-0"
           >
             <li>
+              <NavLink>Donation Request</NavLink>
+            </li>
+            <li>
+              <NavLink>Blog</NavLink>
+            </li>
+            <li>
               <NavLink>About Us</NavLink>
             </li>
             <li>
@@ -72,6 +87,35 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink to={"/signin"}>Sign In</NavLink>
+            </li>
+          </ul>
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost btn-circle avatar"
+          >
+            <div className="w-10 rounded-full">
+              <img
+                alt="Tailwind CSS Navbar component"
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+              />
+            </div>
+          </div>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+          >
+            <li>
+              <a className="justify-between">
+                Profile
+                <span className="badge">New</span>
+              </a>
+            </li>
+            <li>
+              <a>Settings</a>
+            </li>
+            <li>
+              <a>Logout</a>
             </li>
           </ul>
         </div>
