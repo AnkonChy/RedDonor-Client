@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink, useLoaderData } from "react-router";
 import {
   createUserWithEmailAndPassword,
@@ -10,8 +10,10 @@ import { FaEye } from "react-icons/fa";
 import { LuEyeClosed } from "react-icons/lu";
 import { PiEyesFill } from "react-icons/pi";
 import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
   const { districtsData, upazilaData } = useLoaderData();
 
   const [email, setEmail] = useState("");
@@ -35,7 +37,7 @@ const Register = () => {
       password,
     };
     console.log(registerData);
-    createUserWithEmailAndPassword(auth, email, password)
+    createUser(email, password)
       .then((result) => {
         console.log(result);
 
@@ -55,7 +57,7 @@ const Register = () => {
           .then(() => {
             console.log("user profile updated");
           })
-          .catch((error) => console.log("User profile update error"));
+          .catch((error) => console.log(error.message));
       })
       .catch((error) => {
         console.log(error);
