@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { use, useContext, useState } from "react";
 import { Link, NavLink, useLoaderData } from "react-router";
 import {
   createUserWithEmailAndPassword,
@@ -6,14 +6,13 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "../../firebase/firebase.config";
-import { FaEye } from "react-icons/fa";
 import { LuEyeClosed } from "react-icons/lu";
 import { PiEyesFill } from "react-icons/pi";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser } = use(AuthContext);
   const { districtsData, upazilaData } = useLoaderData();
 
   const [email, setEmail] = useState("");

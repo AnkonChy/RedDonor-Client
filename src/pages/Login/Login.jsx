@@ -5,36 +5,32 @@ import {
   signOut,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { Link } from "react-router";
 import auth from "../../firebase/firebase.config";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
-  const [user, setUser] = useState(null);
+  const { signInUser } = use(AuthContext);
+  const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState("");
 
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     console.log(email, password);
-  //   };
-  console.log(user);
-
-  const handleSignOut = () => {
-    // signOut(auth)
-    //   .then(() => {
-    //      console.log('sign out');
-    //      setUser(null)
-    //   })
-    //   .catch((error) => {
-    //     console.log(error.message);
-    //   });
-    setUser(null);
-  };
+  // const handleSignOut = () => {
+  //   signOut(auth)
+  //     .then(() => {
+  //        console.log('sign out');
+  //        setUser(null)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.message);
+  //     });
+  //   setUser(null);
+  // };
 
   const provider = new GoogleAuthProvider();
   const handleGoogleSignIn = () => {
@@ -42,8 +38,8 @@ const Login = () => {
       .then((result) => {
         console.log(result);
 
+        // setError("Please verify you email address");
         if (!result.user.emailVerified) {
-          // setError("Please verify you email address");
           console.log("not varified");
           return;
         } else {
@@ -51,7 +47,7 @@ const Login = () => {
         }
       })
       .catch((error) => {
-        console.log("Error", error);
+        console.log("Error", error.message);
         setUser(null);
       });
   };
@@ -59,7 +55,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     console.log(email, password);
-    signInWithEmailAndPassword(auth, email, password)
+    signInUser(email, password)
       .then((result) => {
         console.log(result);
         setUser(result.user);
@@ -90,19 +86,6 @@ const Login = () => {
       <Helmet>
         <title>RedDonor | Login</title>
       </Helmet>
-      {/* <button
-        onClick={handleSignOut}
-        className="btn border-pink-600 bg-red-600 mt-4 text-white"
-      >
-        Sign Out
-      </button> */}
-      {/* {user && (
-        <div>
-          <h2>{user.displayName}</h2>
-          <p>{user.email}</p>
-          <img src={user.photoURL} alt="" />
-        </div>
-      )} */}
       <div className="bg-base-100 w-full max-w-sm shadow-2xl">
         {/* <h1>{user}</h1> */}
         <h1 className="text-4xl font-semibold text-center pt-10">Login Page</h1>

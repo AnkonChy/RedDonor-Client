@@ -3,8 +3,16 @@ import { NavLink } from "react-router";
 import { AuthContext } from "../Providers/AuthProvider";
 
 const Navbar = () => {
-  const {name} = useContext(AuthContext);
+  const { user, signOutUser } = useContext(AuthContext);
   console.log(name);
+
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {
+        console.log("user sign out successfully");
+      })
+      .catch((error) => console.log("error", error.message));
+  };
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -47,12 +55,20 @@ const Navbar = () => {
           <li>
             <NavLink>Funding</NavLink>
           </li>
-          <li>
-            <NavLink to="/signup">Sign Up</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/signin"}>Sign In</NavLink>
-          </li>
+          {user ? (
+            <li>
+              <button onClick={handleSignOut}>Sign Out</button>
+            </li>
+          ) : (
+            <>
+              <li>
+                <NavLink to="/signup">Sign Up</NavLink>
+              </li>
+              <li>
+                <NavLink to="/signin">Sign In</NavLink>
+              </li>
+            </>
+          )}
         </ul>
 
         <div className="dropdown">
