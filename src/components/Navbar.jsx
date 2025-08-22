@@ -14,9 +14,16 @@ const Navbar = () => {
       .catch((error) => console.log("error", error.message));
   };
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-base-100 shadow-sm w-10/12 mx-auto">
       <div className="navbar-start">
-        <a className="btn btn-ghost text-xl">RedDonor</a>
+        {/* <h1 className="text-4xl md:text-6xl font-extrabold text-red-600 tracking-wide">
+          Red<span className="text-white">Donor</span>
+        </h1> */}
+        <img
+          src="https://i.ibb.co.com/sLL16LL/RedDonor.png"
+          className="w-44"
+          alt=""
+        />
       </div>
       <div className="navbar-center hidden lg:flex">
         {/* <ul className="menu menu-horizontal px-1">
