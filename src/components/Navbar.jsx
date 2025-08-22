@@ -49,9 +49,13 @@ const Navbar = () => {
           <li>
             <NavLink>Blog</NavLink>
           </li>
-          <li>
-            <NavLink>About Us</NavLink>
-          </li>
+          {user && (
+            <>
+              <li>
+                <NavLink to="about">About Us</NavLink>
+              </li>
+            </>
+          )}
           <li>
             <NavLink>Funding</NavLink>
           </li>

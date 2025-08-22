@@ -5,6 +5,7 @@ import About from "../pages/About";
 import Error from "../pages/Error/Error";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import PrivateRoute from "../routes/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,14 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       { index: true, Component: Home },
-      { path: "about", Component: About },
+      {
+        path: "about",
+        element: (
+          <PrivateRoute>
+            <About />
+          </PrivateRoute>
+        ),
+      },
       { path: "signin", Component: Login },
       {
         path: "signup",
