@@ -6,7 +6,7 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import React, { use, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import auth from "../../firebase/firebase.config";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import { Helmet } from "react-helmet-async";
@@ -14,7 +14,8 @@ import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
   const { signInUser } = use(AuthContext);
-  const [user, setUser] = useState("");
+  const navigate = useNavigate();
+  // const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -58,10 +59,13 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => {
         console.log(result);
-        setUser(result.user);
+        // setUser(result.user);
+        setEmail("");
+        setPassword("");
+        navigate("/");
       })
       .catch((error) => {
-        setUser(null);
+        console.log(error.message);
       });
   };
 
