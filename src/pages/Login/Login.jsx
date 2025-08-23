@@ -13,33 +13,19 @@ import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
-  const { signInUser } = use(AuthContext);
+  const { signInUser, signInWithGoogle } = use(AuthContext);
   const navigate = useNavigate();
-  // const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState("");
 
-  // const handleSignOut = () => {
-  //   signOut(auth)
-  //     .then(() => {
-  //        console.log('sign out');
-  //        setUser(null)
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.message);
-  //     });
-  //   setUser(null);
-  // };
-
-  const provider = new GoogleAuthProvider();
   const handleGoogleSignIn = () => {
-    signInWithPopup(auth, provider)
+    signInWithGoogle()
       .then((result) => {
         console.log(result);
 
-        // setError("Please verify you email address");
+        navigate("/");
         if (!result.user.emailVerified) {
           console.log("not varified");
           return;
@@ -49,7 +35,6 @@ const Login = () => {
       })
       .catch((error) => {
         console.log("Error", error.message);
-        setUser(null);
       });
   };
 
@@ -59,7 +44,6 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => {
         console.log(result);
-        // setUser(result.user);
         setEmail("");
         setPassword("");
         navigate("/");
@@ -91,7 +75,6 @@ const Login = () => {
         <title>RedDonor | Login</title>
       </Helmet>
       <div className="bg-base-100 w-full max-w-sm shadow-2xl">
-        {/* <h1>{user}</h1> */}
         <h1 className="text-4xl font-semibold text-center pt-10">Login Page</h1>
         <div className="card-body">
           <form onSubmit={handleLogin} className="fieldset">

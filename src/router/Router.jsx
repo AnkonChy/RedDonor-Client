@@ -6,6 +6,7 @@ import Error from "../pages/Error/Error";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import PrivateRoute from "../routes/PrivateRoute";
+import Search from "../pages/Search/Search";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
         ),
       },
       { path: "signin", Component: Login },
+
       {
         path: "signup",
         loader: async () => {
@@ -34,6 +36,18 @@ const router = createBrowserRouter([
           return { districtsData, upazilaData };
         },
         Component: Register,
+      },
+      {
+        path: "search",
+        loader: async () => {
+          const districtResponse = await fetch("/districts.json");
+          const districtsData = await districtResponse.json();
+          const divisionsResponse = await fetch("/upazila.json");
+          const upazilaData = await divisionsResponse.json();
+
+          return { districtsData, upazilaData };
+        },
+        Component: Search,
       },
     ],
   },

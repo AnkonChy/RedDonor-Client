@@ -14,14 +14,14 @@ const Navbar = () => {
       .catch((error) => console.log("error", error.message));
   };
   return (
-    <div className="navbar bg-base-100 shadow-sm w-10/12 mx-auto">
+    <div className="navbar bg-base-100 shadow-sm lg:px-36 mx-auto">
       <div className="navbar-start">
         {/* <h1 className="text-4xl md:text-6xl font-extrabold text-red-600 tracking-wide">
           Red<span className="text-white">Donor</span>
         </h1> */}
         <img
-          src="https://i.ibb.co.com/sLL16LL/RedDonor.png"
-          className="w-44"
+          src="https://i.ibb.co.com/Mx6WLB02/Red-Donor-1.png"
+          className="w-36 md:w-44"
           alt=""
         />
       </div>

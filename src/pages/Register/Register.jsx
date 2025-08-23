@@ -136,7 +136,7 @@ const Register = () => {
                   id=""
                 >
                   {districtsData.map((district) => (
-                    <option key={upazila?.id} value={district?.name}>
+                    <option key={district?.id} value={district?.name}>
                       {district?.name}
                     </option>
                   ))}
