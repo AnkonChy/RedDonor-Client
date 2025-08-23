@@ -49,7 +49,7 @@ const Navbar = () => {
         </ul> */}
       </div>
       <div className="navbar-end">
-        <ul className="menu menu-horizontal px-1  hidden lg:flex">
+        <ul className="menu menu-horizontal px-1  hidden lg:flex text-base">
           <li>
             <NavLink>Donation Request</NavLink>
           </li>

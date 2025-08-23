@@ -4,9 +4,9 @@ import { useLoaderData } from "react-router";
 const Search = () => {
   const { districtsData, upazilaData } = useLoaderData();
   return (
-    <div className="flex flex-col items-center justify-center">
-      <form action="">
-        <div className="flex flex-col w-1/2">
+    <div className="flex flex-col items-center justify-center mt-10">
+      <form action="" className="flex items-end gap-2">
+        <div className="">
           <label className="text-base">Blood Group</label>
           <select
             className="input"
@@ -28,7 +28,7 @@ const Search = () => {
           </select>
         </div>
 
-        <div className="flex flex-col w-1/2">
+        <div className="flex flex-col">
           <label className="text-base">District</label>
           <select
             className="input"
@@ -43,7 +43,7 @@ const Search = () => {
             ))}
           </select>
         </div>
-        <div className="flex flex-col w-1/2">
+        <div className="flex flex-col">
           <label className="text-base">Upazila</label>
           <select
             className="input"
@@ -63,7 +63,7 @@ const Search = () => {
 
         <button
           type="submit"
-          className="btn border-pink-600 bg-red-600 mt-4 text-white"
+          className="px-4 py-2 rounded border-pink-600 bg-red-600 text-white"
         >
           Search
         </button>
