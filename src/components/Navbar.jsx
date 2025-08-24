@@ -49,9 +49,9 @@ const Navbar = () => {
         </ul> */}
       </div>
       <div className="navbar-end">
-        <ul className="menu menu-horizontal px-1  hidden lg:flex text-base">
+        <ul className="menu menu-horizontal px-1  hidden lg:flex text-base font-semibold">
           <li>
-            <NavLink>Donation Request</NavLink>
+            <NavLink to="donation-request">Donation Request</NavLink>
           </li>
           <li>
             <NavLink>Blog</NavLink>

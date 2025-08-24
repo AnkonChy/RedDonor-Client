@@ -7,6 +7,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import PrivateRoute from "../routes/PrivateRoute";
 import Search from "../pages/Search/Search";
+import DonationRequest from "../pages/DonationRequest/DonationRequest";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
           return { districtsData, upazilaData };
         },
         Component: Search,
+      },
+      {
+        path: "donation-request",
+        Component: DonationRequest,
       },
     ],
   },

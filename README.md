@@ -1,12 +1,49 @@
-# React + Vite
+# 🩸 RedDonor – Blood Donation Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+RedDonor is a MERN stack-based blood donation platform that connects **donors, recipients, volunteers, and admins** in a seamless way. It ensures smooth donor registration, blood request management, funding, and content management, making the donation process efficient and user-friendly.  
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live Site
+[RedDonor Live Website](https://your-live-site-url.com)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 👤 Admin Credentials
+- **Username/Email:** admin@reddonor.com  
+- **Password:** admin123  
+
+---
+
+## 🚀 Features
+- 🔐 **Role-based access control** – Admin, Donor, Volunteer with different permissions.  
+- 📝 **User registration & login** – Donors can sign up, upload avatar (ImageBB), and manage profiles.  
+- 📊 **Responsive dashboards** – Separate dashboards for Admin, Donor, and Volunteer.  
+- 🩸 **Donation request system** – Create, view, edit, filter, paginate, and manage donation requests.  
+- 📑 **Content management system** – Admins and volunteers can manage blogs with draft/publish toggle.  
+- 🔍 **Advanced donor search** – Search by blood group, district, and upazila.  
+- 💰 **Funding system** – Secure funding via Stripe with total funds tracking.  
+- 🔔 **SweetAlert / Toast notifications** – For CRUD operations, login, signup, and donations.  
+- 🔒 **JWT authentication** – Protects private routes and APIs, persistent login after reload.  
+- ⚡ **TanStack Query integration** – Efficient GET requests with caching and synchronization.  
+- 🌍 **Responsive design** – Optimized for mobile, tablet, and desktop.  
+
+---
+
+## 🧑‍🤝‍🧑 User Roles
+1. **Admin 🌐**
+   - Full access: Manage users, roles, donation requests, blogs, and funds.  
+2. **Donor 🩸**
+   - Register, request blood, update profile, manage their own requests.  
+3. **Volunteer 🤝**
+   - Manage donation requests (limited permissions), manage blog content (without delete/publish).  
+
+---
+
+## 🛠️ Tech Stack
+- **Frontend:** React, React Router, TailwindCSS, DaisyUI, TanStack Query, Axios  
+- **Backend:** Node.js, Express.js, MongoDB (Atlas)  
+- **Authentication:** Firebase Auth + JWT  
+- **Payment:** Stripe API  
+- **File Upload:** ImageBB API  
+- **Editor:** Jodit-react (Rich Text Editor)  

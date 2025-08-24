@@ -12,14 +12,14 @@ const Banner = () => {
             Be Someone’s <span className="text-yellow-400">Hope</span> Today
           </h1>
 
-          <div className="flex gap-2 ld:mt-8">
+          <div className="flex items-center gap-2 ld:mt-8">
             <Link to="/signup">
-              <button className="px-4 py-2 md:px-6 md:py-3  bg-white text-red-700 font-semibold rounded-md shadow-md hover:bg-red-100 hover:scale-105 transition-all duration-300">
+              <button className="px-4 py-2 md:px-6 md:py-3  bg-white text-red-700 font-semibold rounded-md shadow-md hover:bg-red-100 hover:scale-105 transition-all duration-300 border-2 border-white">
                 Join as a Donor
               </button>
             </Link>
             <Link to="/search">
-              <button className="px-4 py-2 md:px-6 md:py-3 bg-transparent border-2 border-white text-white font-semibold rounded-md hover:bg-white hover:text-red-700 transition-all duration-300">
+              <button className="px-4 py-2 md:px-6 md:py-3 bg-transparent border-2 border-white text-white font-semibold rounded-md hover:bg-white hover:text-red-700 transition-all duration-300 hover:scale-105">
                 Search Donors
               </button>
             </Link>
