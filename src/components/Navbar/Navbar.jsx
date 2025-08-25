@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { NavLink } from "react-router";
-import { AuthContext } from "../Providers/AuthProvider";
+import { AuthContext } from "../../Providers/AuthProvider";
+import "./Navbar.css";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
@@ -49,27 +50,44 @@ const Navbar = () => {
         </ul> */}
       </div>
       <div className="navbar-end">
-        <ul className="menu menu-horizontal px-1  hidden lg:flex text-base font-semibold">
+        <ul className="gap-6 items-center px-1  hidden lg:flex text-base font-semibold">
           <li>
             <NavLink to="donation-request">Donation Request</NavLink>
           </li>
           <li>
-            <NavLink>Blog</NavLink>
-          </li>
-          {user && (
-            <>
-              <li>
-                <NavLink to="about">About Us</NavLink>
-              </li>
-            </>
-          )}
-          <li>
-            <NavLink>Funding</NavLink>
+            <NavLink to="blog">Blog</NavLink>
           </li>
           {user ? (
-            <li>
-              <button onClick={handleSignOut}>Sign Out</button>
-            </li>
+            <>
+              <li>
+                <NavLink to="/funding">Funding</NavLink>
+              </li>
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
+                  <div className="w-10 rounded-full">
+                    <img
+                      alt="Tailwind CSS Navbar component"
+                      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    />
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                >
+                  <li>
+                    <NavLink to="/">Dashboard</NavLink>
+                  </li>
+                  <li>
+                    <button onClick={handleSignOut}>Sign Out</button>
+                  </li>
+                </ul>
+              </div>
+            </>
           ) : (
             <>
               <li>
@@ -104,49 +122,52 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow right-0"
           >
+            {user ? (
+              <>
+                <div className="dropdown dropdown-end">
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="btn btn-ghost btn-circle avatar"
+                  >
+                    <div className="w-10 rounded-full">
+                      <img
+                        alt="Tailwind CSS Navbar component"
+                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                      />
+                    </div>
+                  </div>
+                  <ul
+                    tabIndex={0}
+                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                  >
+                    <li>
+                      <NavLink to="/">Dashboard</NavLink>
+                    </li>
+                    <li>
+                      <button onClick={handleSignOut}>Sign Out</button>
+                    </li>
+                  </ul>
+                </div>
+              </>
+            ) : (
+              <>
+                <li>
+                  <NavLink to="/signup">Sign Up</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/signin">Sign In</NavLink>
+                </li>
+              </>
+            )}
             <li>
-              <NavLink>Donation Request</NavLink>
+              <NavLink to="donation-request">Donation Request</NavLink>
             </li>
             <li>
-              <NavLink>Blog</NavLink>
+              <NavLink to="/funding">Funding</NavLink>
             </li>
             <li>
-              <NavLink>About Us</NavLink>
-            </li>
-            <li>
-              <NavLink to="/signup">Sign Up</NavLink>
-            </li>
-            <li>
-              <NavLink to={"/signin"}>Sign In</NavLink>
-            </li>
-          </ul>
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              />
-            </div>
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-          >
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
+              <NavLink to="blog">Blog</NavLink>
             </li>
           </ul>
         </div>

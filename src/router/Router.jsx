@@ -8,6 +8,8 @@ import Register from "../pages/Register/Register";
 import PrivateRoute from "../routes/PrivateRoute";
 import Search from "../pages/Search/Search";
 import DonationRequest from "../pages/DonationRequest/DonationRequest";
+import Blog from "../pages/Blog/Blog";
+import Funding from "../pages/Funding/Funding";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +55,14 @@ const router = createBrowserRouter([
       {
         path: "donation-request",
         Component: DonationRequest,
+      },
+      {
+        path: "blog",
+        Component: Blog,
+      },
+      {
+        path: "funding",
+        Component: Funding,
       },
     ],
   },
